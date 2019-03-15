@@ -132,6 +132,59 @@ type VersionedRemoteProcessGroup struct {
 	GroupIdentifier       string        `json:"group_identifier"`
 }
 
+type UsersEntity struct {
+	Generated string `json:"generated"`
+	Users []UserEntity `json:"users"`
+}
+
+type UserEntity struct {
+	Revision                     RevisionDTO      `json:"revision"`
+	Id                           string           `json:"id"`
+	Uri                          string           `json:"uri"`
+	Position                     PositionDTO      `json:"position"`
+	Permissions                  PermissionsDTO   `json:"permissions"`
+	Bulletins                    []BulletinEntity `json:"bulletins"`
+	DisconnectedNodeAcknowledged bool             `json:"disconnected_node_acknowledged"`
+	Component                    UserDTO          `json:"component"`
+}
+
+type UserDTO struct {
+	Id                   string                      `json:"id"`
+	VersionedComponentId string                      `json:"versioned_component_id"`
+	ParentGroupId        string                      `json:"permissions_dto"`
+	Position             PositionDTO                 `json:"position"`
+	Identity             string                      `json:"identity"`
+	Configurable         bool                        `json:"configurable"`
+	UserGroups           []TenantEntity              `json:"user_groups"`
+	AccessPolicies       []AccessPolicySummaryEntity `json:"access_policies"`
+}
+
+type UserGroupEntity struct {
+	Revision                     RevisionDTO      `json:"revision"`
+	Id                           string           `json:"id"`
+	Uri                          string           `json:"uri"`
+	Position                     PositionDTO      `json:"position"`
+	Permissions                  PermissionsDTO   `json:"permissions"`
+	Bulletins                    []BulletinEntity `json:"bulletins"`
+	DisconnectedNodeAcknowledged bool             `json:"disconnected_node_acknowledged"`
+	Component                    UserGroupDTO     `json:"component"`
+}
+
+type UserGroupDTO struct {
+	Id                   string               `json:"id"`
+	VersionedComponentId string               `json:"versioned_component_id"`
+	ParentGroupId        string               `json:"parent_group_id"`
+	Position             PositionDTO          `json:"position"`
+	Identity             string               `json:"identity"`
+	Configurable         bool                 `json:"configurable"`
+	Users                []TenantEntity       `json:"users"`
+	AccessPolicies       []AccessPolicyEntity `json:"access_policies"`
+}
+
+type UserGroupsEntity struct {
+	UserGroups []UserGroupEntity `json:"user_groups"`
+}
+
 type VersionedProcessor struct {
 	Identifier                       string       `json:"identifier"`
 	Name                             string       `json:"name"`
