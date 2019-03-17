@@ -40,6 +40,7 @@ type PermissionsDTO struct {
 }
 
 type BulletinDTO struct {
+	// TODO: BulletinDTO
 }
 
 type BulletinEntity struct {
@@ -77,9 +78,11 @@ type ProcessGroupDTO struct {
 }
 
 type FlowSnippetDTO struct {
+	// TODO: FlowSnippetDTO
 }
 
 type VersionControlInformationDTO struct {
+	// TODO: VersionControlInformationDTO
 }
 
 type ProcessGroupStatusDTO struct {
@@ -100,7 +103,9 @@ type Link struct {
 	UriBuilder UriBuilder   `json:"uri_builder"`
 }
 
-type UriBuilder struct{}
+type UriBuilder struct {
+	// TODO: UriBuilder
+}
 
 type VersionedFlowSnapshotMetadata struct {
 	Link             Link   `json:"link"`
