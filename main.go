@@ -10,6 +10,8 @@ import (
 	"net/url"
 	"os"
 	"strings"
+
+	"./go-nifi-api/types"
 )
 
 const (
