@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedFlow struct {
 	Link              Link        `json:"link"`

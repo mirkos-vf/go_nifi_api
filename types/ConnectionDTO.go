@@ -1,4 +1,4 @@
-package main
+package types
 
 type ConnectionDTO struct {
 	Id                            string         `json:"id"`

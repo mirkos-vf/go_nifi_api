@@ -1,4 +1,4 @@
-package main
+package types
 
 type ProcessGroupStatusSnapshotEntity struct {
 	Id                         string                        `json:"id"`

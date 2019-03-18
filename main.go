@@ -11,7 +11,7 @@ import (
 	"os"
 	"strings"
 
-	"./go-nifi-api/types"
+	"./types"
 )
 
 const (
@@ -75,7 +75,7 @@ func main() {
 	}
 	//--------------------------------------------------
 
-	processGroupEntity := ProcessGroupEntity{}
+	processGroupEntity := types.ProcessGroupEntity{}
 
 	req1, err1 := http.NewRequest("GET", "https://vm-pd-nifi-1.dh.rt.ru:8080/nifi-api/process-groups/518182e7-0168-1000-ffff-ffff8966214b", nil)
 	if err1 != nil {
@@ -90,7 +90,7 @@ func main() {
 
 	data1, err3 := ioutil.ReadAll(resp1.Body)
 	bytes := []byte(data1)
-	json.Unmarshal(bytes, &processGroupEntity)
+	_ = json.Unmarshal(bytes, &processGroupEntity)
 	// Check Error
 	if err3 != nil {
 		fmt.Println(err)

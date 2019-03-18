@@ -1,4 +1,4 @@
-package main
+package types
 
 type Bundle struct {
 	Group    string `json:"group"`

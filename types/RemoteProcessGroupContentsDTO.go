@@ -1,4 +1,4 @@
-package main
+package types
 
 type RemoteProcessGroupContentsDTO struct {
 	InputPorts  []RemoteProcessGroupPortDTO `json:"inputports"`

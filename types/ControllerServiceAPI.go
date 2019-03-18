@@ -1,4 +1,4 @@
-package main
+package types
 
 type ControllerServiceAPI struct {
 	Type   string `json:"type"`

@@ -1,4 +1,4 @@
-package main
+package types
 
 type UserGroupDTO struct {
 	Id                   string               `json:"id"`

@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedFlowCoordinates struct {
 	RegistryUrl string `json:"registryurl"`

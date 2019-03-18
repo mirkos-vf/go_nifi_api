@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedLabel struct {
 	Identifier      string   `json:"identifier"`

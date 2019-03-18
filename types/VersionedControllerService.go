@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedControllerService struct {
 	Identifier            string                 `json:"identifier"`

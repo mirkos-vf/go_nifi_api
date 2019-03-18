@@ -1,4 +1,4 @@
-package main
+package types
 
 type ConnectionStatusSnapshotEntity struct {
 	Id                       string                      `json:"id"`

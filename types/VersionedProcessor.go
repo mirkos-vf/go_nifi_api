@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedProcessor struct {
 	Identifier                       string   `json:"identifier"`

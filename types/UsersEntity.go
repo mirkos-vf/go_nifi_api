@@ -1,4 +1,4 @@
-package main
+package types
 
 type UsersEntity struct {
 	Generated string       `json:"generated"`

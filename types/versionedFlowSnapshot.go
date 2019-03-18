@@ -1,4 +1,4 @@
-package main
+package types
 
 type versionedFlowSnapshot struct {
 	SnapshotMetadata VersionedFlowSnapshotMetadata `json:"snapshotmetadata"`

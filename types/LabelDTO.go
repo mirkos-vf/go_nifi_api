@@ -1,4 +1,4 @@
-package main
+package types
 
 type LabelDTO struct {
 	Id                   string      `json:"id"`

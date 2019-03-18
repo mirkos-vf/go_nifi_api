@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedPort struct {
 	Identifier                       string   `json:"identifier"`

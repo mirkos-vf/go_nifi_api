@@ -1,4 +1,4 @@
-package main
+package types
 
 type BundleDTO struct {
 	Group    string `json:"group"`

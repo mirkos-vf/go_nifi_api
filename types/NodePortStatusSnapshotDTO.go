@@ -1,4 +1,4 @@
-package main
+package types
 
 type NodePortStatusSnapshotDTO struct {
 	NodeId         string                `json:"node_id"`

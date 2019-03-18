@@ -1,4 +1,4 @@
-package main
+package types
 
 type ProcessorDTO struct {
 	Id                         string            `json:"id"`

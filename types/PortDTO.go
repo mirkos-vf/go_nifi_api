@@ -1,4 +1,4 @@
-package main
+package types
 
 type PortDTO struct {
 	Id                               string      `json:"id"`

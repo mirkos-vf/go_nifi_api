@@ -1,4 +1,4 @@
-package main
+package types
 
 type ProcessGroupStatusDTO struct {
 	Id                 string                              `json:"id"`

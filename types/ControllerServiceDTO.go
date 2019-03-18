@@ -1,4 +1,4 @@
-package main
+package types
 
 type ControllerServiceDTO struct {
 	Id                        string                                        `json:"id"`

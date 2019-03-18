@@ -1,4 +1,4 @@
-package main
+package types
 
 type RemoteProcessGroupDTO struct {
 	Id                            string                        `json:"id"`

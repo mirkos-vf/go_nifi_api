@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedFunnel struct {
 	Identifier      string   `json:"identifier"`

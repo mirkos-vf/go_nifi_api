@@ -1,4 +1,4 @@
-package main
+package types
 
 type PositionDTO struct {
 	X float32 `json:"x"`

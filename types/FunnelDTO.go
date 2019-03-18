@@ -1,4 +1,4 @@
-package main
+package types
 
 type FunnelDTO struct {
 	Id                   string      `json:"id"`

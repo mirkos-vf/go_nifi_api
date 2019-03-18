@@ -1,4 +1,4 @@
-package main
+package types
 
 type ControllerServiceReferencingComponentEntity struct {
 	Revision                     RevisionDTO                              `json:"revision"`

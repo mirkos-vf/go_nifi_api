@@ -1,4 +1,4 @@
-package main
+package types
 
 type ControllerServiceApiDTO struct {
 	Type   string    `json:"type"`

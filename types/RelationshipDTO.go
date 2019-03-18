@@ -1,4 +1,4 @@
-package main
+package types
 
 type RelationshipDTO struct {
 	Name          string `json:"name"`

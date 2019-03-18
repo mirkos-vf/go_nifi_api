@@ -1,4 +1,4 @@
-package main
+package types
 
 type Bucket struct {
 	Link             Link        `json:"link"`

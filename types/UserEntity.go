@@ -1,4 +1,4 @@
-package main
+package types
 
 type UserEntity struct {
 	Revision                     RevisionDTO      `json:"revision"`

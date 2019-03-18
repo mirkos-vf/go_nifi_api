@@ -1,4 +1,4 @@
-package main
+package types
 
 type PortEntity struct {
 	Revision                     RevisionDTO      `json:"revision"`

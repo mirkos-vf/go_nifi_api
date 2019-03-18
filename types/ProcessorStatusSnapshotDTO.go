@@ -1,4 +1,4 @@
-package main
+package types
 
 type ProcessorStatusSnapshotDTO struct {
 	Id                    string `json:"id"`

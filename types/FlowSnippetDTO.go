@@ -1,4 +1,4 @@
-package main
+package types
 
 type FlowSnippetDTO struct {
 	ProcessGroups       []ProcessGroupDTO       `json:"processgroups"`

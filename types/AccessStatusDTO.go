@@ -1,4 +1,4 @@
-package main
+package types
 
 type AccessStatusDTO struct {
 	Identity string `json:"identity"`

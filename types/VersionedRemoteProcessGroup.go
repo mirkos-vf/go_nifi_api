@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedRemoteProcessGroup struct {
 	Identifier            string        `json:"identifier"`

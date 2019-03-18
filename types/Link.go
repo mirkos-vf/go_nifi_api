@@ -1,4 +1,4 @@
-package main
+package types
 
 type Link struct {
 	Type       string     `json:"type"`

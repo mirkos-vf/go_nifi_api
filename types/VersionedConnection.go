@@ -1,4 +1,4 @@
-package main
+package types
 
 type VersionedConnection struct {
 	Identifier                    string               `json:"identifier"`

@@ -1,4 +1,4 @@
-package main
+package types
 
 type BulletinDTO struct {
 	Id          int64  `json:"id"`

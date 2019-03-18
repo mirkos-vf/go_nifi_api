@@ -1,4 +1,4 @@
-package main
+package types
 
 type BatchSettingsDTO struct {
 	Count    int32  `json:"count"`

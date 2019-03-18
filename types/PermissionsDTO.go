@@ -1,4 +1,4 @@
-package main
+package types
 
 type PermissionsDTO struct {
 	CanRead  bool `json:"canread"`

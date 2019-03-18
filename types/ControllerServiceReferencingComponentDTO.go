@@ -1,4 +1,4 @@
-package main
+package types
 
 type ControllerServiceReferencingComponentDTO struct {
 	GroupId               string                                        `json:"groupid"`

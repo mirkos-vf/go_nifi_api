@@ -1,4 +1,4 @@
-package main
+package types
 
 type ProcessGroupEntity struct {
 	Revision                     RevisionDTO           `json:"revision"`

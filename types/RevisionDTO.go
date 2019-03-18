@@ -1,4 +1,4 @@
-package main
+package types
 
 type RevisionDTO struct {
 	ClientId     string `json:"clientid"`
