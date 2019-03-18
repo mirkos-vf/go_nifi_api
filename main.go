@@ -26,6 +26,8 @@ func (c *client) makeClient() {
 	c.client = &http.Client{Transport: transCfg}
 }
 
-func main() {
-
+func NewNiFi() *app {
+	return &app{
+		Token: nil,
+	}
 }
