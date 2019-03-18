@@ -1,4 +1,4 @@
-package main
+package nifi_api
 
 import (
 	"crypto/tls"
@@ -27,7 +27,5 @@ func (c *client) makeClient() {
 }
 
 func NewNiFi() *app {
-	return &app{
-		Token: nil,
-	}
+	return &app{}
 }
