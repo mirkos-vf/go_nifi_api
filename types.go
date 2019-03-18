@@ -1,13 +1,9 @@
 package main
 
-import (
-	"go/types"
-)
-
 type RevisionDTO struct {
-	ClientId     string `json:"client_id"`
+	ClientId     string `json:"clientid"`
 	Version      int    `json:"version"`
-	LastModifier string `json:"last_modifier"`
+	LastModifier string `json:"lastmodifier"`
 }
 
 type PositionDTO struct {
@@ -21,7 +17,7 @@ type Position struct {
 }
 
 type AccessConfigurationDTO struct {
-	SupportsLogin bool `json:"supports_login"`
+	SupportsLogin bool `json:"supportslogin"`
 }
 
 type AccessStatusDTO struct {
@@ -31,76 +27,323 @@ type AccessStatusDTO struct {
 }
 
 type AccessStatusEntity struct {
-	AccessStatus AccessStatusDTO `json:"access_status"`
+	AccessStatus AccessStatusDTO `json:"accessstatus"`
 }
 
 type PermissionsDTO struct {
-	CanRead  bool `json:"can_read"`
-	CanWrite bool `json:"can_write"`
+	CanRead  bool `json:"canread"`
+	CanWrite bool `json:"canwrite"`
 }
 
 type BulletinDTO struct {
-	// TODO: BulletinDTO
+	Id          int64  `json:"id"`
+	NodeAddress string `json:"nodeaddress"`
+	Category    string `json:"category"`
+	GroupId     string `json:"groupid"`
+	SourceId    string `json:"sourceid"`
+	SourceName  string `json:"sourcename"`
+	Level       string `json:"level"`
+	Message     string `json:"message"`
+	Timestamp   string `json:"TIMESTAMP"`
 }
 
 type BulletinEntity struct {
 	Id          int64       `json:"id"`
-	GroupId     string      `json:"group_id"`
-	SourceId    string      `json:"source_id"`
+	GroupId     string      `json:"groupid"`
+	SourceId    string      `json:"sourceid"`
 	Timestamp   string      `json:"timestamp"`
-	NodeAddress string      `json:"node_address"`
-	CanRead     bool        `json:"can_read"`
+	NodeAddress string      `json:"nodeaddress"`
+	CanRead     bool        `json:"canread"`
 	Bulletin    BulletinDTO `json:"bulletin"`
+}
+
+type object struct {
+	Values map[string]string `json:"values"`
 }
 
 type ProcessGroupDTO struct {
 	Id                           string                       `json:"id"`
-	VersionedComponentId         string                       `json:"versioned_component_id"`
-	ParentGroupId                string                       `json:"parent_group_id"`
+	VersionedComponentId         string                       `json:"versionedcomponentid"`
+	ParentGroupId                string                       `json:"parentgroupid"`
 	Position                     PositionDTO                  `json:"position"`
 	Name                         string                       `json:"name"`
 	Comments                     string                       `json:"comments"`
-	Variables                    types.Object                 `json:"variables"`
-	VersionControlInformation    VersionControlInformationDTO `json:"version_control_information"`
-	RunningCount                 int32                        `json:"running_count"`
-	StoppedCount                 int32                        `json:"stopped_count"`
-	InvalidCount                 int32                        `json:"invalid_count"`
-	DisabledCount                int32                        `json:"disabled_count"`
-	InactiveRemotePortCount      int32                        `json:"inactive_remote_port_count"`
-	UpToDateCount                int32                        `json:"up_to_date_count"`
-	LocallyModifiedCount         int32                        `json:"locally_modified_count"`
-	StaleCount                   int32                        `json:"stale_count"`
-	LocallyModifiedAndStaleCount int32                        `json:"locally_modified_and_stale_count"`
-	SyncFailureCount             int32                        `json:"sync_failure_count"`
-	InputPortCount               int32                        `json:"input_port_count"`
-	OutputPortCount              int32                        `json:"output_port_count"`
+	Variables                    object                       `json:"variables"`
+	VersionControlInformation    VersionControlInformationDTO `json:"versioncontrolinformation"`
+	RunningCount                 int32                        `json:"runningcount"`
+	StoppedCount                 int32                        `json:"stoppedcount"`
+	InvalidCount                 int32                        `json:"invalidcount"`
+	DisabledCount                int32                        `json:"disabledcount"`
+	InactiveRemotePortCount      int32                        `json:"inactiveremoteportcount"`
+	UpToDateCount                int32                        `json:"uptodatecount"`
+	LocallyModifiedCount         int32                        `json:"locallymodifiedcount"`
+	StaleCount                   int32                        `json:"stalecount"`
+	LocallyModifiedAndStaleCount int32                        `json:"locallymodifiedandstalecount"`
+	SyncFailureCount             int32                        `json:"syncfailurecount"`
+	InputPortCount               int32                        `json:"inputportcount"`
+	OutputPortCount              int32                        `json:"outputportcount"`
 	Contents                     FlowSnippetDTO               `json:"contents"`
 }
 
+type RemoteProcessGroupDTO struct {
+	Id                            string                        `json:"id"`
+	VersionedComponentId          string                        `json:"versionedcomponentid"`
+	ParentGroupId                 string                        `json:"parentgroupid"`
+	Position                      PositionDTO                   `json:"position"`
+	TargetUri                     string                        `json:"targeturi"`
+	TargetUris                    string                        `json:"targeturis"`
+	TargetSecure                  bool                          `json:"targetsecure"`
+	Name                          string                        `json:"name"`
+	Comments                      string                        `json:"comments"`
+	CommunicationsTimeout         string                        `json:"communicationstimeout"`
+	YieldDuration                 string                        `json:"yieldduration"`
+	TransportProtocol             string                        `json:"transportprotocol"`
+	LocalNetworkInterface         string                        `json:"localnetworkinterface"`
+	ProxyHost                     string                        `json:"proxyhost"`
+	ProxyPort                     int32                         `json:"proxyport"`
+	ProxyUser                     string                        `json:"proxyuser"`
+	ProxyPassword                 string                        `json:"proxypassword"`
+	AuthorizationIssues           []string                      `json:"authorizationissues"`
+	ValidationErrors              []string                      `json:"validationerrors"`
+	Transmitting                  bool                          `json:"transmitting"`
+	InputPortCount                int32                         `json:"inputportcount"`
+	OutputPortCount               int32                         `json:"outputportcount"`
+	ActiveRemoteInputPortCount    int32                         `json:"activeremoteinputportcount"`
+	InactiveRemoteInputPortCount  int32                         `json:"inactiveremoteinputportcount"`
+	ActiveRemoteOutputPortCount   int32                         `json:"activeremoteoutputportcount"`
+	InactiveRemoteOutputPortCount int32                         `json:"inactiveremoteoutputportcount"`
+	FlowRefreshed                 string                        `json:"flowrefreshed"`
+	Contents                      RemoteProcessGroupContentsDTO `json:"contents"`
+}
+
+type RemoteProcessGroupContentsDTO struct {
+	InputPorts  []RemoteProcessGroupPortDTO `json:"inputports"`
+	OutputPorts []RemoteProcessGroupPortDTO `json:"outputports"`
+}
+
+type RemoteProcessGroupPortDTO struct {
+	Id                               string           `json:"id"`
+	TargetId                         string           `json:"targetid"`
+	VersionedComponentId             string           `json:"versionedcomponentid"`
+	GroupId                          string           `json:"groupid"`
+	Name                             string           `json:"name"`
+	Comments                         string           `json:"comments"`
+	ConcurrentlySchedulableTaskCount int32            `json:"concurrentlyschedulabletaskcount"`
+	Transmitting                     bool             `json:"transmitting"`
+	Usecompression                   bool             `json:"usecompression"`
+	Exists                           bool             `json:"exists"`
+	TargetRunning                    bool             `json:"targetrunning"`
+	Connected                        bool             `json:"connected"`
+	BatchSettings                    BatchSettingsDTO `json:"batchsettings"`
+}
+
+type BatchSettingsDTO struct {
+	Count    int32  `json:"count"`
+	Size     string `json:"size"`
+	Duration string `json:"duration"`
+}
+
+type ProcessorDTO struct {
+	Id                         string            `json:"id"`
+	VersionedComponentId       string            `json:"versionedcomponentid"`
+	ParentGroupId              string            `json:"parentgroupid"`
+	Position                   PositionDTO       `json:"position"`
+	Name                       string            `json:"name"`
+	Type                       string            `json:"type"`
+	Bundle                     BundleDTO         `json:"bundle"`
+	State                      string            `json:"state"`
+	Style                      object            `json:"style"`
+	Relationships              []RelationshipDTO `json:"relationships"`
+	Description                string            `json:"description"`
+	SupportsParallelProcessing bool              `json:"supportsparallelprocessing"`
+	SupportsEventDriven        bool              `json:"supportseventdriven"`
+	SupportsBatching           bool              `json:"supportsbatching"`
+	PersistsState              bool              `json:"persistsstate"`
+	InputRequirement           string            `json:"inputrequirement"`
+	Config                     string            `json:"config"`
+	ValidationErrors           []string          `json:"validationerrors"`
+}
+
+type RelationshipDTO struct {
+	Name          string `json:"name"`
+	Description   string `json:"description"`
+	AutoTerminate bool   `json:"autoterminate"`
+}
+
+type BundleDTO struct {
+	Group    string `json:"group"`
+	Artifact string `json:"artifact"`
+	Version  string `json:"version"`
+}
+
+type PortDTO struct {
+	Id                               string      `json:"id"`
+	VersionedComponentId             string      `json:"versionedcomponentid"`
+	ParentGroupId                    string      `json:"parentgroupid"`
+	Position                         PositionDTO `json:"position"`
+	Name                             string      `json:"name"`
+	Comments                         string      `json:"comments"`
+	State                            string      `json:"state"`
+	Type                             string      `json:"type"`
+	Transmitting                     bool        `json:"transmitting"`
+	ConcurrentlySchedulableTaskCount int32       `json:"concurrentlyschedulabletaskcount"`
+	UserAccessControl                []string    `json:"useraccesscontrol"`
+	GroupAccessControl               []string    `json:"groupaccesscontrol"`
+	ValidationErrors                 []string    `json:"validationerrors"`
+}
+
+type ConnectionDTO struct {
+	Id                            string         `json:"id"`
+	VersionedComponentId          string         `json:"versionedcomponentid"`
+	ParentGroupId                 string         `json:"parentgroupid"`
+	Position                      PositionDTO    `json:"position"`
+	Source                        ConnectableDTO `json:"source"`
+	Destination                   ConnectableDTO `json:"destination"`
+	Name                          string         `json:"name"`
+	LabelIndex                    int32          `json:"labelindex"`
+	GetzIndex                     int32          `json:"getzindex"`
+	SelectedRelationships         []string       `json:"selectedrelationships"`
+	AvailableRelationships        []string       `json:"availablerelationships"`
+	BackPressureObjectThreshold   int32          `json:"backpressureobjectthreshold"`
+	BackPressureDataSizeThreshold string         `json:"backpressuredatasizethreshold"`
+	FlowFileExpiration            string         `json:"flowfileexpiration"`
+	Prioritizers                  []string       `json:"prioritizers"`
+	Bends                         []PositionDTO  `json:"bends"`
+	LoadBalanceStrategy           string         `json:"loadbalancestrategy"`
+	LoadBalancePartitionAttribute string         `json:"loadbalancepartitionattribute"`
+	LoadBalanceCompression        string         `json:"loadbalancecompression"`
+	LoadBalanceStatus             string         `json:"loadbalancestatus"`
+}
+
+type ConnectableDTO struct {
+	Id                   string `json:"id"`
+	VersionedComponentId string `json:"versionedcomponentid"`
+	Type                 string `json:"type"`
+	GroupId              string `json:"groupid"`
+	Name                 string `json:"name"`
+	Running              bool   `json:"running"`
+	Transmitting         bool   `json:"transmitting"`
+	Exists               bool   `json:"exists"`
+	Comments             string `json:"сomments"`
+}
+
+type LabelDTO struct {
+	Id                   string      `json:"id"`
+	VersionedComponentId string      `json:"versionedcomponentid"`
+	ParentGroupId        string      `json:"parentgroupid"`
+	Position             PositionDTO `json:"position"`
+	Label                string      `json:"label"`
+	Width                float32     `json:"width"`
+	Height               float32     `json:"height"`
+	Style                object      `json:"style"`
+}
+
+type FunnelDTO struct {
+	Id                   string      `json:"id"`
+	VersionedComponentId string      `json:"versionedcomponentid"`
+	ParentGroupId        string      `json:"parentgroupid"`
+	Position             PositionDTO `json:"position"`
+}
+
+type ControllerServiceDTO struct {
+	Id                        string                                        `json:"id"`
+	VersionedComponentId      string                                        `json:"versionedcomponentid"`
+	ParentGroupId             string                                        `json:"parentgroupid"`
+	Position                  PositionDTO                                   `json:"position"`
+	Name                      string                                        `json:"name"`
+	Type                      string                                        `json:"type"`
+	Bundle                    BundleDTO                                     `json:"bundle"`
+	ControllerServiceApis     []ControllerServiceApiDTO                     `json:"controllerserviceapis"`
+	Comments                  string                                        `json:"comments"`
+	State                     string                                        `json:"state"`
+	PersistsState             bool                                          `json:"persistsstate"`
+	Restricted                bool                                          `json:"restricted"`
+	Deprecated                bool                                          `json:"deprecated"`
+	MultipleVersionsAvailable bool                                          `json:"multipleversionsavailable"`
+	Properties                object                                        `json:"properties"`
+	Descriptors               object                                        `json:"descriptors"`
+	CustomUiUrl               string                                        `json:"customuiurl"`
+	AnnotationData            string                                        `json:"annotationdata"`
+	ReferencingComponents     []ControllerServiceReferencingComponentEntity `json:"referencingcomponents"`
+	ValidationErrors          []string                                      `json:"validationerrors"`
+	ValidationStatus          string                                        `json:"validationstatus"`
+	ExtensionMissing          bool                                          `json:"extensionmissing"`
+}
+
+type ControllerServiceApiDTO struct {
+	Type   string    `json:"type"`
+	Bundle BundleDTO `json:"bundle"`
+}
+
+type ControllerServiceReferencingComponentEntity struct {
+	Revision                     RevisionDTO                              `json:"revision"`
+	Id                           string                                   `json:"id"`
+	Uri                          string                                   `json:"uri"`
+	Position                     PositionDTO                              `json:"position"`
+	Permissions                  PermissionsDTO                           `json:"permissions"`
+	Bulletins                    []BulletinEntity                         `json:"bulletins"`
+	DisconnectedNodeAcknowledged bool                                     `json:"disconnectednodeacknowledged"`
+	Component                    ControllerServiceReferencingComponentDTO `json:"component"`
+	OperatePermissions           PermissionsDTO                           `json:"operatepermissions"`
+}
+
+type ControllerServiceReferencingComponentDTO struct {
+	GroupId               string                                        `json:"groupid"`
+	Id                    string                                        `json:"id"`
+	Name                  string                                        `json:"name"`
+	Type                  string                                        `json:"type"`
+	State                 string                                        `json:"state"`
+	Properties            object                                        `json:"properties"`
+	Descriptors           object                                        `json:"descriptors"`
+	ValidationErrors      []string                                      `json:"validationerrors"`
+	ReferenceType         string                                        `json:"referencetype"`
+	ActiveThreadCount     int32                                         `json:"activethreadcount"`
+	ReferenceCycle        bool                                          `json:"referencecycle"`
+	ReferencingComponents []ControllerServiceReferencingComponentEntity `json:"referencingcomponents"`
+}
+
 type FlowSnippetDTO struct {
-	// TODO: FlowSnippetDTO
+	ProcessGroups       []ProcessGroupDTO       `json:"processgroups"`
+	RemoteProcessGroups []RemoteProcessGroupDTO `json:"remoteprocessgroups"`
+	Processors          []ProcessorDTO          `json:"processors"`
+	InputPorts          []PortDTO               `json:"inputports"`
+	OutputPorts         []PortDTO               `json:"outputports"`
+	Connections         []ConnectionDTO         `json:"connections"`
+	Labels              []LabelDTO              `json:"labels"`
+	Funnels             []FunnelDTO             `json:"funnels"`
+	ControllerServices  []ControllerServiceDTO  `json:"controllerservices"`
 }
 
 type VersionControlInformationDTO struct {
-	// TODO: VersionControlInformationDTO
+	GroupId          string `json:"groupid"`
+	RegistryId       string `json:"registryid"`
+	RegistryName     string `json:"registryname"`
+	BucketId         string `json:"bucketid"`
+	BucketName       string `json:"bucketname"`
+	FlowId           string `json:"flowid"`
+	FlowName         string `json:"flowname"`
+	FlowDescription  string `json:"flowdescription"`
+	Version          int32  `json:"version"`
+	State            string `json:"state"`
+	StateExplanation string `json:"stateexplanation"`
 }
 
 type ProcessGroupStatusDTO struct {
 	Id                 string                              `json:"id"`
 	Name               string                              `json:"name"`
-	StatsLastRefreshed string                              `json:"stats_last_refreshed"`
-	AggregateSnapshot  ProcessGroupStatusSnapshotDTO       `json:"aggregate_snapshot"`
-	NodeSnapshots      []NodeProcessGroupStatusSnapshotDTO `json:"node_snapshots"`
+	StatsLastRefreshed string                              `json:"statslastrefreshed"`
+	AggregateSnapshot  ProcessGroupStatusSnapshotDTO       `json:"aggregatesnapshot"`
+	NodeSnapshots      []NodeProcessGroupStatusSnapshotDTO `json:"nodesnapshots"`
 }
 
 type Link struct {
-	Type       string       `json:"type"`
-	Rels       []string     `json:"rels"`
-	Rel        string       `json:"rel"`
-	Uri        string       `json:"uri"`
-	Params     types.Object `json:"params"`
-	Title      string       `json:"title"`
-	UriBuilder UriBuilder   `json:"uri_builder"`
+	Type       string     `json:"type"`
+	Rels       []string   `json:"rels"`
+	Rel        string     `json:"rel"`
+	Uri        string     `json:"uri"`
+	Params     object     `json:"params"`
+	Title      string     `json:"title"`
+	UriBuilder UriBuilder `json:"uribuilder"`
 }
 
 type UriBuilder struct {
@@ -109,8 +352,8 @@ type UriBuilder struct {
 
 type VersionedFlowSnapshotMetadata struct {
 	Link             Link   `json:"link"`
-	BucketIdentifier string `json:"bucket_identifier"`
-	FlowIdentifier   string `json:"flow_identifier"`
+	BucketIdentifier string `json:"bucketidentifier"`
+	FlowIdentifier   string `json:"flowidentifier"`
 	Version          int32  `json:"version"`
 	Timestamp        int64  `json:"timestamp"`
 	Author           string `json:"author"`
@@ -122,23 +365,23 @@ type VersionedRemoteProcessGroup struct {
 	Name                  string        `json:"name"`
 	Comments              string        `json:"comments"`
 	Position              Position      `json:"position"`
-	TargetUri             string        `json:"target_uri"`
-	TargetUris            string        `json:"target_uris"`
-	CommunicationsTimeout string        `json:"communications_timeout"`
-	YieldDuration         string        `json:"yield_duration"`
-	TransportProtocol     string        `json:"transport_protocol"`
-	LocalNetworkInterface string        `json:"local_network_interface"`
-	ProxyHost             string        `json:"proxy_host"`
-	ProxyPort             int32         `json:"proxy_port"`
-	ProxyUser             string        `json:"proxy_user"`
-	InputPorts            []InputPorts  `json:"input_ports"`
-	OutputPorts           []OutputPorts `json:"output_ports"`
-	ComponentType         string        `json:"component_type"`
-	GroupIdentifier       string        `json:"group_identifier"`
+	TargetUri             string        `json:"targeturi"`
+	TargetUris            string        `json:"targeturis"`
+	CommunicationsTimeout string        `json:"communicationstimeout"`
+	YieldDuration         string        `json:"yieldduration"`
+	TransportProtocol     string        `json:"transportprotocol"`
+	LocalNetworkInterface string        `json:"localnetworkinterface"`
+	ProxyHost             string        `json:"proxyhost"`
+	ProxyPort             int32         `json:"proxyport"`
+	ProxyUser             string        `json:"proxyuser"`
+	InputPorts            []InputPorts  `json:"inputports"`
+	OutputPorts           []OutputPorts `json:"outputports"`
+	ComponentType         string        `json:"componenttype"`
+	GroupIdentifier       string        `json:"groupidentifier"`
 }
 
 type InputPorts struct {
-	// TODO: InputPorts
+	// TODO: InputPorts in RUN
 }
 
 type OutputPorts struct {
@@ -157,19 +400,19 @@ type UserEntity struct {
 	Position                     PositionDTO      `json:"position"`
 	Permissions                  PermissionsDTO   `json:"permissions"`
 	Bulletins                    []BulletinEntity `json:"bulletins"`
-	DisconnectedNodeAcknowledged bool             `json:"disconnected_node_acknowledged"`
+	DisconnectedNodeAcknowledged bool             `json:"disconnectednodeacknowledged"`
 	Component                    UserDTO          `json:"component"`
 }
 
 type UserDTO struct {
 	Id                   string                      `json:"id"`
-	VersionedComponentId string                      `json:"versioned_component_id"`
-	ParentGroupId        string                      `json:"permissions_dto"`
+	VersionedComponentId string                      `json:"versionedcomponentid"`
+	ParentGroupId        string                      `json:"permissionsdto"`
 	Position             PositionDTO                 `json:"position"`
 	Identity             string                      `json:"identity"`
 	Configurable         bool                        `json:"configurable"`
-	UserGroups           []TenantEntity              `json:"user_groups"`
-	AccessPolicies       []AccessPolicySummaryEntity `json:"access_policies"`
+	UserGroups           []TenantEntity              `json:"usergroups"`
+	AccessPolicies       []AccessPolicySummaryEntity `json:"accesspolicies"`
 }
 
 type AccessPolicySummaryEntity struct {
@@ -183,19 +426,19 @@ type UserGroupEntity struct {
 	Position                     PositionDTO      `json:"position"`
 	Permissions                  PermissionsDTO   `json:"permissions"`
 	Bulletins                    []BulletinEntity `json:"bulletins"`
-	DisconnectedNodeAcknowledged bool             `json:"disconnected_node_acknowledged"`
+	DisconnectedNodeAcknowledged bool             `json:"disconnectednodeacknowledged"`
 	Component                    UserGroupDTO     `json:"component"`
 }
 
 type UserGroupDTO struct {
 	Id                   string               `json:"id"`
-	VersionedComponentId string               `json:"versioned_component_id"`
-	ParentGroupId        string               `json:"parent_group_id"`
+	VersionedComponentId string               `json:"versionedcomponentid"`
+	ParentGroupId        string               `json:"parentgroupid"`
 	Position             PositionDTO          `json:"position"`
 	Identity             string               `json:"identity"`
 	Configurable         bool                 `json:"configurable"`
 	Users                []TenantEntity       `json:"users"`
-	AccessPolicies       []AccessPolicyEntity `json:"access_policies"`
+	AccessPolicies       []AccessPolicyEntity `json:"accesspolicies"`
 }
 
 type TenantEntity struct {
@@ -207,31 +450,31 @@ type AccessPolicyEntity struct {
 }
 
 type UserGroupsEntity struct {
-	UserGroups []UserGroupEntity `json:"user_groups"`
+	UserGroups []UserGroupEntity `json:"usergroups"`
 }
 
 type VersionedProcessor struct {
-	Identifier                       string       `json:"identifier"`
-	Name                             string       `json:"name"`
-	Comments                         string       `json:"comments"`
-	Position                         Position     `json:"position"`
-	Bundle                           Bundle       `json:"bundle"`
-	Style                            types.Object `json:"style"`
-	Type                             string       `json:"type"`
-	Properties                       types.Object `json:"properties"`
-	PropertyDescriptors              types.Object `json:"property_descriptors"`
-	AnnotationData                   string       `json:"annotation_data"`
-	SchedulingPeriod                 string       `json:"scheduling_period"`
-	SchedulingStrategy               string       `json:"scheduling_strategy"`
-	ExecutionNode                    string       `json:"execution_node"`
-	PenaltyDuration                  string       `json:"penalty_duration"`
-	YieldDuration                    string       `json:"yield_duration"`
-	BulletinLevel                    string       `json:"bulletin_level"`
-	RunDurationMillis                int64        `json:"run_duration_millis"`
-	ConcurrentlySchedulableTaskCount int64        `json:"concurrently_schedulable_task_count"`
-	AutoTerminatedRelationships      []string     `json:"auto_terminated_relationships"`
-	ComponentType                    string       `json:"component_type"`
-	GroupIdentifier                  string       `json:"group_identifier"`
+	Identifier                       string   `json:"identifier"`
+	Name                             string   `json:"name"`
+	Comments                         string   `json:"comments"`
+	Position                         Position `json:"position"`
+	Bundle                           Bundle   `json:"bundle"`
+	Style                            object   `json:"style"`
+	Type                             string   `json:"type"`
+	Properties                       object   `json:"properties"`
+	PropertyDescriptors              object   `json:"propertydescriptors"`
+	AnnotationData                   string   `json:"annotationdata"`
+	SchedulingPeriod                 string   `json:"schedulingperiod"`
+	SchedulingStrategy               string   `json:"schedulingstrategy"`
+	ExecutionNode                    string   `json:"executionnode"`
+	PenaltyDuration                  string   `json:"penaltyduration"`
+	YieldDuration                    string   `json:"yieldduration"`
+	BulletinLevel                    string   `json:"bulletinlevel"`
+	RunDurationMillis                int64    `json:"rundurationmillis"`
+	ConcurrentlySchedulableTaskCount int64    `json:"concurrentlyschedulabletaskcount"`
+	AutoTerminatedRelationships      []string `json:"autoterminatedrelationships"`
+	ComponentType                    string   `json:"componenttype"`
+	GroupIdentifier                  string   `json:"groupidentifier"`
 }
 
 type VersionedPort struct {
@@ -240,9 +483,9 @@ type VersionedPort struct {
 	Comments                         string   `json:"comments"`
 	Position                         Position `json:"position"`
 	Type                             string   `json:"type"`
-	ConcurrentlySchedulableTaskCount int32    `json:"concurrently_schedulable_task_count"`
-	ComponentType                    string   `json:"component_type"`
-	GroupIdentifier                  string   `json:"group_identifier"`
+	ConcurrentlySchedulableTaskCount int32    `json:"concurrentlyschedulabletaskcount"`
+	ComponentType                    string   `json:"componenttype"`
+	GroupIdentifier                  string   `json:"groupidentifier"`
 }
 
 type VersionedConnection struct {
@@ -252,19 +495,19 @@ type VersionedConnection struct {
 	Position                      Position             `json:"position"`
 	Source                        ConnectableComponent `json:"source"`
 	Destination                   ConnectableComponent `json:"destination"`
-	LabelIndex                    int32                `json:"label_index"`
-	ZIndex                        int64                `json:"z_index"`
-	SelectedRelationships         []string             `json:"selected_relationships"`
-	BackPressureObjectThreshold   int64                `json:"back_pressure_object_threshold"`
-	BackPressureDataSizeThreshold string               `json:"back_pressure_data_size_threshold"`
-	FlowFileExpiration            string               `json:"flow_file_expiration"`
+	LabelIndex                    int32                `json:"labelindex"`
+	ZIndex                        int64                `json:"zindex"`
+	SelectedRelationships         []string             `json:"selectedrelationships"`
+	BackPressureObjectThreshold   int64                `json:"backpressureobjectthreshold"`
+	BackPressureDataSizeThreshold string               `json:"backpressuredatasizethreshold"`
+	FlowFileExpiration            string               `json:"flowfileexpiration"`
 	Prioritizers                  []string             `json:"prioritizers"`
 	Bends                         []Position           `json:"bends"`
-	LoadBalanceStrategy           string               `json:"load_balance_strategy"`
-	PartitioningAttribute         string               `json:"partitioning_attribute"`
-	LoadBalanceCompression        string               `json:"load_balance_compression"`
-	ComponentType                 string               `json:"component_type"`
-	GroupIdentifier               string               `json:"group_identifier"`
+	LoadBalanceStrategy           string               `json:"loadbalancestrategy"`
+	PartitioningAttribute         string               `json:"partitioningattribute"`
+	LoadBalanceCompression        string               `json:"loadbalancecompression"`
+	ComponentType                 string               `json:"componenttype"`
+	GroupIdentifier               string               `json:"groupidentifier"`
 }
 
 type ConnectableComponent struct {
@@ -272,16 +515,16 @@ type ConnectableComponent struct {
 }
 
 type VersionedLabel struct {
-	Identifier      string       `json:"identifier"`
-	Name            string       `json:"name"`
-	Comments        string       `json:"comments"`
-	Position        Position     `json:"position"`
-	Label           string       `json:"label"`
-	Width           float32      `json:"width"`
-	Height          float32      `json:"height"`
-	Style           types.Object `json:"style"`
-	ComponentType   string       `json:"component_type"`
-	GroupIdentifier string       `json:"group_identifier"`
+	Identifier      string   `json:"identifier"`
+	Name            string   `json:"name"`
+	Comments        string   `json:"comments"`
+	Position        Position `json:"position"`
+	Label           string   `json:"label"`
+	Width           float32  `json:"width"`
+	Height          float32  `json:"height"`
+	Style           object   `json:"style"`
+	ComponentType   string   `json:"componenttype"`
+	GroupIdentifier string   `json:"groupidentifier"`
 }
 
 type VersionedFunnel struct {
@@ -289,8 +532,8 @@ type VersionedFunnel struct {
 	Name            string   `json:"name"`
 	Comments        string   `json:"comments"`
 	Position        Position `json:"position"`
-	ComponentType   string   `json:"component_type"`
-	GroupIdentifier string   `json:"group_identifier"`
+	ComponentType   string   `json:"componenttype"`
+	GroupIdentifier string   `json:"groupidentifier"`
 }
 
 type ControllerServiceAPI struct {
@@ -305,12 +548,12 @@ type VersionedControllerService struct {
 	Position              string                 `json:"position"`
 	Type                  string                 `json:"type"`
 	Bundle                Bundle                 `json:"bundle"`
-	ControllerServiceApis []ControllerServiceAPI `json:"controller_service_apis"`
-	Properties            types.Object           `json:"properties"`
-	PropertyDescriptors   types.Object           `json:"property_descriptors"`
-	AnnotationData        string                 `json:"annotation_data"`
-	ComponentType         string                 `json:"component_type"`
-	GroupIdentifier       string                 `json:"group_identifier"`
+	ControllerServiceApis []ControllerServiceAPI `json:"controllerserviceapis"`
+	Properties            object                 `json:"properties"`
+	PropertyDescriptors   object                 `json:"propertydescriptors"`
+	AnnotationData        string                 `json:"annotationdata"`
+	ComponentType         string                 `json:"componenttype"`
+	GroupIdentifier       string                 `json:"groupidentifier"`
 }
 
 type Bundle struct {
@@ -320,9 +563,9 @@ type Bundle struct {
 }
 
 type VersionedFlowCoordinates struct {
-	RegistryUrl string `json:"registry_url"`
-	BucketId    string `json:"bucket_id"`
-	FlowId      string `json:"flow_id"`
+	RegistryUrl string `json:"registryurl"`
+	BucketId    string `json:"bucketid"`
+	FlowId      string `json:"flowid"`
 	Version     int32  `json:"version"`
 	Latest      bool   `json:"latest"`
 }
@@ -332,25 +575,25 @@ type VersionedProcessGroup struct {
 	Name                     string                        `json:"name"`
 	Comments                 string                        `json:"comments"`
 	Position                 Position                      `json:"position"`
-	ProcessGroups            []VersionedProcessGroup       `json:"process_groups"`
-	RemoteProcessGroups      []VersionedRemoteProcessGroup `json:"remote_process_groups"`
+	ProcessGroups            []VersionedProcessGroup       `json:"processgroups"`
+	RemoteProcessGroups      []VersionedRemoteProcessGroup `json:"remoteprocessgroups"`
 	Processors               []VersionedProcessor          `json:"processors"`
-	InputPorts               []VersionedPort               `json:"input_ports"`
-	OutputPorts              []VersionedPort               `json:"output_ports"`
+	InputPorts               []VersionedPort               `json:"inputports"`
+	OutputPorts              []VersionedPort               `json:"outputports"`
 	Connections              []VersionedConnection         `json:"connections"`
 	Labels                   []VersionedLabel              `json:"labels"`
 	Funnels                  []VersionedFunnel             `json:"funnels"`
-	ControllerServices       []VersionedControllerService  `json:"controller_services"`
-	VersionedFlowCoordinates VersionedFlowCoordinates      `json:"versioned_flow_coordinates"`
-	Variables                types.Object                  `json:"variables"`
-	ComponentType            string                        `json:"component_type"`
-	GroupIdentifier          string                        `json:"group_identifier"`
+	ControllerServices       []VersionedControllerService  `json:"controllerservices"`
+	VersionedFlowCoordinates VersionedFlowCoordinates      `json:"versionedflowcoordinates"`
+	Variables                object                        `json:"variables"`
+	ComponentType            string                        `json:"componenttype"`
+	GroupIdentifier          string                        `json:"groupidentifier"`
 }
 
 type Permissions struct {
-	CanRead   bool `json:"can_read"`
-	CanWrite  bool `json:"can_write"`
-	CanDelete bool `json:"can_delete"`
+	CanRead   bool `json:"canread"`
+	CanWrite  bool `json:"canwrite"`
+	CanDelete bool `json:"candelete"`
 }
 
 type VersionedFlow struct {
@@ -358,179 +601,216 @@ type VersionedFlow struct {
 	Identifier        string      `json:"identifier"`
 	Name              string      `json:"name"`
 	Description       string      `json:"description"`
-	BucketIdentifier  string      `json:"bucket_identifier"`
-	BucketName        string      `json:"bucket_name"`
-	CreatedTimestamp  int64       `json:"created_timestamp"`
-	ModifiedTimestamp int64       `json:"modified_timestamp"`
+	BucketIdentifier  string      `json:"bucketidentifier"`
+	BucketName        string      `json:"bucketname"`
+	CreatedTimestamp  int64       `json:"createdtimestamp"`
+	ModifiedTimestamp int64       `json:"modifiedtimestamp"`
 	Type              string      `json:"type"`
 	Permissions       Permissions `json:"permissions"`
-	VersionCount      int64       `json:"version_count"`
+	VersionCount      int64       `json:"versioncount"`
 }
 
 type Bucket struct {
 	Link             Link        `json:"link"`
 	Identifier       string      `json:"identifier"`
 	Name             string      `json:"name"`
-	CreatedTimestamp int64       `json:"created_timestamp"`
+	CreatedTimestamp int64       `json:"createdtimestamp"`
 	Description      string      `json:"description"`
 	Permissions      Permissions `json:"permissions"`
 }
 
 type NodeProcessGroupStatusSnapshotDTO struct {
+	// TODO: NodeProcessGroupStatusSnapshotDTO
 }
 
 type ProcessGroupStatusSnapshotDTO struct {
 	Id                                string                                   `json:"id"`
 	Name                              string                                   `json:"name"`
-	ConnectionStatusSnapshots         []ConnectionStatusSnapshotEntity         `json:"connection_status_snapshots"`
-	ProcessorStatusSnapshots          []ProcessorStatusSnapshotEntity          `json:"processor_status_snapshots"`
-	ProcessGroupStatusSnapshots       []ProcessGroupStatusSnapshotEntity       `json:"process_group_status_snapshots"`
-	RemoteProcessGroupStatusSnapshots []RemoteProcessGroupStatusSnapshotEntity `json:"remote_process_group_status_snapshots"`
-	InputPortStatusSnapshots          []PortStatusSnapshotEntity               `json:"input_port_status_snapshots"`
-	OutputPortStatusSnapshots         []PortStatusSnapshotEntity               `json:"output_port_status_snapshots"`
-	VersionedFlowState                string                                   `json:"versioned_flow_state"`
-	FlowFilesIn                       string                                   `json:"flow_files_in"`
-	BytesIn                           int64                                    `json:"bytes_in"`
+	ConnectionStatusSnapshots         []ConnectionStatusSnapshotEntity         `json:"connectionstatussnapshots"`
+	ProcessorStatusSnapshots          []ProcessorStatusSnapshotEntity          `json:"processorstatussnapshots"`
+	ProcessGroupStatusSnapshots       []ProcessGroupStatusSnapshotEntity       `json:"processgroupstatussnapshots"`
+	RemoteProcessGroupStatusSnapshots []RemoteProcessGroupStatusSnapshotEntity `json:"remoteprocessgroupstatussnapshots"`
+	InputPortStatusSnapshots          []PortStatusSnapshotEntity               `json:"inputportstatussnapshots"`
+	OutputPortStatusSnapshots         []PortStatusSnapshotEntity               `json:"outputportstatussnapshots"`
+	VersionedFlowState                string                                   `json:"versionedflowstate"`
+	FlowFilesIn                       string                                   `json:"flowfilesin"`
+	BytesIn                           int64                                    `json:"bytesin"`
 	Input                             string                                   `json:"input"`
-	FlowFilesQueued                   int32                                    `json:"flow_files_queued"`
-	BytesQueued                       int64                                    `json:"bytes_queued"`
+	FlowFilesQueued                   int32                                    `json:"flowfilesqueued"`
+	BytesQueued                       int64                                    `json:"bytesqueued"`
 	Queued                            string                                   `json:"queued"`
-	QueuedCount                       string                                   `json:"queued_count"`
-	QueuedSize                        string                                   `json:"queued_size"`
-	BytesRead                         int64                                    `json:"bytes_read"`
+	QueuedCount                       string                                   `json:"queuedcount"`
+	QueuedSize                        string                                   `json:"queuedsize"`
+	BytesRead                         int64                                    `json:"bytesread"`
 	Read                              string                                   `json:"read"`
-	BytesWritten                      int64                                    `json:"bytes_written"`
+	BytesWritten                      int64                                    `json:"byteswritten"`
 	Written                           string                                   `json:"written"`
-	FlowFilesOut                      int32                                    `json:"flow_files_out"`
-	BytesOut                          int64                                    `json:"bytes_out"`
+	FlowFilesOut                      int32                                    `json:"flowfilesout"`
+	BytesOut                          int64                                    `json:"bytesout"`
 	Output                            string                                   `json:"output"`
-	FlowFilesTransferred              int32                                    `json:"flow_files_transferred"`
-	BytesTransferred                  int64                                    `json:"bytes_transferred"`
+	FlowFilesTransferred              int32                                    `json:"flowfilestransferred"`
+	BytesTransferred                  int64                                    `json:"bytestransferred"`
 	Transferred                       string                                   `json:"transferred"`
-	BytesReceived                     int64                                    `json:"bytes_received"`
-	FlowFilesReceived                 int32                                    `json:"flow_files_received"`
+	BytesReceived                     int64                                    `json:"bytesreceived"`
+	FlowFilesReceived                 int32                                    `json:"flowfilesreceived"`
 	Received                          string                                   `json:"received"`
-	BytesSent                         int64                                    `json:"bytes_sent"`
-	FlowFilesSent                     int32                                    `json:"flow_files_sent"`
+	BytesSent                         int64                                    `json:"bytessent"`
+	FlowFilesSent                     int32                                    `json:"flowfilessent"`
 	Sent                              string                                   `json:"sent"`
-	ActiveThreadCount                 int32                                    `json:"active_thread_count"`
-	TerminatedThreadCount             int32                                    `json:"terminated_thread_count"`
+	ActiveThreadCount                 int32                                    `json:"activethreadcount"`
+	TerminatedThreadCount             int32                                    `json:"terminatedthreadcount"`
 }
 
 type ConnectionStatusSnapshotEntity struct {
 	Id                       string                      `json:"id"`
-	ConnectionStatusSnapshot ConnectionStatusSnapshotDTO `json:"connection_status_snapshot"`
-	CanRead                  bool                        `json:"can_read"`
+	ConnectionStatusSnapshot ConnectionStatusSnapshotDTO `json:"connectionstatussnapshot"`
+	CanRead                  bool                        `json:"canread"`
 }
 
 type ProcessorStatusSnapshotEntity struct {
 	Id                      string                     `json:"id"`
-	ProcessorStatusSnapshot ProcessorStatusSnapshotDTO `json:"processor_status_snapshot"`
-	CanRead                 bool                       `json:"can_read"`
+	ProcessorStatusSnapshot ProcessorStatusSnapshotDTO `json:"processorstatussnapshot"`
+	CanRead                 bool                       `json:"canread"`
 }
 
 type ProcessGroupStatusSnapshotEntity struct {
 	Id                         string                        `json:"id"`
-	ProcessGroupStatusSnapshot ProcessGroupStatusSnapshotDTO `json:"process_group_status_snapshot"`
-	CanRead                    bool                          `json:"can_read"`
+	ProcessGroupStatusSnapshot ProcessGroupStatusSnapshotDTO `json:"processgroupstatussnapshot"`
+	CanRead                    bool                          `json:"canread"`
 }
 
 type RemoteProcessGroupStatusSnapshotEntity struct {
 	Id                               string                              `json:"id"`
-	RemoteProcessGroupStatusSnapshot RemoteProcessGroupStatusSnapshotDTO `json:"remote_process_group_status_snapshot"`
-	CanRead                          bool                                `json:"can_read"`
+	RemoteProcessGroupStatusSnapshot RemoteProcessGroupStatusSnapshotDTO `json:"remoteprocessgroupstatussnapshot"`
+	CanRead                          bool                                `json:"canread"`
 }
 
 type PortStatusSnapshotEntity struct {
 	Id                 string                `json:"id"`
 	PortStatusSnapshot PortStatusSnapshotDTO `json:"portStatusSnapshot"`
-	CanRead            bool                  `json:"can_read"`
+	CanRead            bool                  `json:"canread"`
 }
 
 type PortStatusSnapshotDTO struct {
 	Id                string `json:"id"`
-	GroupId           string `json:"group_id"`
+	GroupId           string `json:"groupid"`
 	Name              string `json:"name"`
-	ActiveThreadCount int32  `json:"active_thread_count"`
-	FlowFilesIn       int32  `json:"flow_files_in"`
-	BytesIn           int64  `json:"bytes_in"`
+	ActiveThreadCount int32  `json:"activethreadcount"`
+	FlowFilesIn       int32  `json:"flowfilesin"`
+	BytesIn           int64  `json:"bytesin"`
 	Input             string `json:"input"`
-	FlowFilesOut      int32  `json:"flow_files_out"`
-	BytesOut          int64  `json:"bytes_out"`
+	FlowFilesOut      int32  `json:"flowfilesout"`
+	BytesOut          int64  `json:"bytesout"`
 	Output            string `json:"output"`
 	Transmitting      bool   `json:"transmitting"`
-	RunStatus         string `json:"run_status"`
+	RunStatus         string `json:"runstatus"`
 }
 
 type RemoteProcessGroupStatusSnapshotDTO struct {
 	Id                 string `json:"id"`
-	GroupId            string `json:"group_id"`
+	GroupId            string `json:"groupid"`
 	Name               string `json:"name"`
-	TargetUri          string `json:"target_uri"`
-	TransmissionStatus string `json:"transmission_status"`
-	ActiveThreadCount  int    `json:"active_thread_count"`
-	FlowFilesSent      int    `json:"flow_files_sent"`
-	BytesSent          int    `json:"bytes_sent"`
+	TargetUri          string `json:"targeturi"`
+	TransmissionStatus string `json:"transmissionstatus"`
+	ActiveThreadCount  int    `json:"activethreadcount"`
+	FlowFilesSent      int    `json:"flowfilessent"`
+	BytesSent          int    `json:"bytessent"`
 	Sent               string `json:"sent"`
-	FlowFilesReceived  int    `json:"flow_files_received"`
-	BytesReceived      int    `json:"bytes_received"`
+	FlowFilesReceived  int    `json:"flowfilesreceived"`
+	BytesReceived      int    `json:"bytesreceived"`
 	Received           string `json:"received"`
 }
 
 type ProcessorStatusSnapshotDTO struct {
 	Id                    string `json:"id"`
-	GroupId               string `json:"group_id"`
+	GroupId               string `json:"groupid"`
 	Name                  string `json:"name"`
 	Type                  string `json:"type"`
-	RunStatus             string `json:"run_status"`
-	ExecutionNode         string `json:"execution_node"`
-	BytesRead             int64  `json:"bytes_read"`
-	BytesWritten          int64  `json:"bytes_written"`
+	RunStatus             string `json:"runstatus"`
+	ExecutionNode         string `json:"executionnode"`
+	BytesRead             int64  `json:"bytesread"`
+	BytesWritten          int64  `json:"byteswritten"`
 	Read                  string `json:"read"`
 	Written               string `json:"written"`
-	FlowFilesIn           int32  `json:"flow_files_in"`
-	BytesIn               int64  `json:"bytes_in"`
+	FlowFilesIn           int32  `json:"flowfilesin"`
+	BytesIn               int64  `json:"bytesin"`
 	Input                 string `json:"input"`
-	FlowFilesOut          int32  `json:"flow_files_out"`
-	BytesOut              int64  `json:"bytes_out"`
+	FlowFilesOut          int32  `json:"flowfilesout"`
+	BytesOut              int64  `json:"bytesout"`
 	Output                string `json:"output"`
-	TaskCount             int32  `json:"task_count"`
-	TasksDurationNanos    int64  `json:"tasks_duration_nanos"`
+	TaskCount             int32  `json:"taskcount"`
+	TasksDurationNanos    int64  `json:"tasksdurationnanos"`
 	Tasks                 string `json:"tasks"`
-	TasksDuration         string `json:"tasks_duration"`
-	ActiveThreadCount     int32  `json:"active_thread_count"`
-	TerminatedThreadCount int32  `json:"terminated_thread_count"`
+	TasksDuration         string `json:"tasksduration"`
+	ActiveThreadCount     int32  `json:"activethreadcount"`
+	TerminatedThreadCount int32  `json:"terminatedthreadcount"`
 }
 
 type ConnectionStatusSnapshotDTO struct {
 	Id              string `json:"id"`
-	GroupId         string `json:"group_id"`
+	GroupId         string `json:"groupid"`
 	Name            string `json:"name"`
-	SourceId        string `json:"source_id"`
-	SourceName      string `json:"source_name"`
-	DestinationId   string `json:"destination_id"`
-	DestinationName string `json:"destination_name"`
-	FlowFilesIn     int32  `json:"flow_files_in"`
-	BytesIn         int64  `json:"bytes_in"`
+	SourceId        string `json:"sourceid"`
+	SourceName      string `json:"sourcename"`
+	DestinationId   string `json:"destinationid"`
+	DestinationName string `json:"destinationname"`
+	FlowFilesIn     int32  `json:"flowfilesin"`
+	BytesIn         int64  `json:"bytesin"`
 	Input           string `json:"input"`
-	FlowFilesOut    int32  `json:"flow_files_out"`
-	BytesOut        int64  `json:"bytes_out"`
+	FlowFilesOut    int32  `json:"flowfilesout"`
+	BytesOut        int64  `json:"bytesout"`
 	Output          string `json:"output"`
-	FlowFilesQueued int32  `json:"flow_files_queued"`
-	BytesQueued     int64  `json:"bytes_queued"`
+	FlowFilesQueued int32  `json:"flowfilesqueued"`
+	BytesQueued     int64  `json:"bytesqueued"`
 	Queued          string `json:"queued"`
-	QueuedSize      string `json:"queued_size"`
-	QueuedCount     string `json:"queued_count"`
-	PercentUseCount int32  `json:"percent_use_count"`
-	PercentUseBytes int32  `json:"percent_use_bytes"`
+	QueuedSize      string `json:"queuedsize"`
+	QueuedCount     string `json:"queuedcount"`
+	PercentUseCount int32  `json:"percentusecount"`
+	PercentUseBytes int32  `json:"percentusebytes"`
 }
 
 type versionedFlowSnapshot struct {
-	SnapshotMetadata VersionedFlowSnapshotMetadata `json:"snapshot_metadata"`
-	FlowContents     VersionedProcessGroup         `json:"flow_contents"`
+	SnapshotMetadata VersionedFlowSnapshotMetadata `json:"snapshotmetadata"`
+	FlowContents     VersionedProcessGroup         `json:"flowcontents"`
 	Flow             VersionedFlow                 `json:"flow"`
 	Bucket           Bucket                        `json:"bucket"`
 	Latest           bool                          `json:"latest"`
+}
+
+type OutputPortsEntity struct {
+	OutputPorts []PortEntity `json:"outputports"`
+}
+
+type PortEntity struct {
+	Revision                     RevisionDTO      `json:"revision"`
+	Id                           string           `json:"id"`
+	Uri                          string           `json:"uri"`
+	Position                     PositionDTO      `json:"position"`
+	Permissions                  PermissionsDTO   `json:"permissions"`
+	Bulletins                    []BulletinEntity `json:"bulletins"`
+	DisconnectedNodeAcknowledged bool             `json:"disconnected_node_acknowledged"`
+	Component                    PortDTO          `json:"component"`
+	Status                       PortStatusDTO    `json:"status"`
+	PortType                     string           `json:"port_type"`
+	OperatePermissions           PermissionsDTO   `json:"operate_permissions"`
+}
+
+type PortStatusDTO struct {
+	Id                 string                      `json:"id"`
+	GroupId            string                      `json:"group_id"`
+	Name               string                      `json:"name"`
+	Transmitting       bool                        `json:"transmitting"`
+	RunStatus          string                      `json:"run_status"`
+	StatsLastRefreshed string                      `json:"stats_last_refreshed"`
+	AggregateSnapshot  PortStatusSnapshotDTO       `json:"aggregate_snapshot"`
+	NodeSnapshots      []NodePortStatusSnapshotDTO `json:"node_snapshots"`
+}
+
+type NodePortStatusSnapshotDTO struct {
+	NodeId         string                `json:"node_id"`
+	Address        string                `json:"address"`
+	ApiPort        int32                 `json:"api_port"`
+	StatusSnapshot PortStatusSnapshotDTO `json:"status_snapshot"`
 }
 
 type ProcessGroupEntity struct {
@@ -540,22 +820,22 @@ type ProcessGroupEntity struct {
 	Position                     PositionDTO           `json:"position"`
 	Permissions                  PermissionsDTO        `json:"permissions"`
 	Bulletins                    []BulletinEntity      `json:"bulletins"`
-	DisconnectedNodeAcknowledged bool                  `json:"disconnected_node_acknowledged"`
+	DisconnectedNodeAcknowledged bool                  `json:"disconnectednodeacknowledged"`
 	Component                    ProcessGroupDTO       `json:"component"`
 	Status                       ProcessGroupStatusDTO `json:"status"`
-	VersionedFlowSnapshot        versionedFlowSnapshot `json:"versioned_flow_snapshot"`
-	RunningCount                 int32                 `json:"running_count"`
-	StoppedCount                 int32                 `json:"stopped_count"`
-	InvalidCount                 int32                 `json:"invalid_count"`
-	DisabledCount                int32                 `json:"disabled_count"`
-	ActiveRemotePortCount        int32                 `json:"active_remote_port_count"`
-	InactiveRemotePortCount      int32                 `json:"inactive_remote_port_count"`
-	VersionedFlowState           string                `json:"versioned_flow_state"`
-	UpToDateCount                int32                 `json:"up_to_date_count"`
-	LocallyModifiedCount         int32                 `json:"locally_modified_count"`
-	StaleCount                   int32                 `json:"stale_count"`
-	LocallyModifiedAndStaleCount int32                 `json:"locally_modified_and_stale_count"`
-	SyncFailureCount             int32                 `json:"sync_failure_count"`
-	InputPortCount               int32                 `json:"input_port_count"`
-	OutputPortCount              int32                 `json:"output_port_count"`
+	VersionedFlowSnapshot        versionedFlowSnapshot `json:"versionedflowsnapshot"`
+	RunningCount                 int32                 `json:"runningcount"`
+	StoppedCount                 int32                 `json:"stoppedcount"`
+	InvalidCount                 int32                 `json:"invalidcount"`
+	DisabledCount                int32                 `json:"disabledcount"`
+	ActiveRemotePortCount        int32                 `json:"activeremoteportcount"`
+	InactiveRemotePortCount      int32                 `json:"inactiveremoteportcount"`
+	VersionedFlowState           string                `json:"versionedflowstate"`
+	UpToDateCount                int32                 `json:"uptodatecount"`
+	LocallyModifiedCount         int32                 `json:"locallymodifiedcount"`
+	StaleCount                   int32                 `json:"stalecount"`
+	LocallyModifiedAndStaleCount int32                 `json:"locallymodifiedandstalecount"`
+	SyncFailureCount             int32                 `json:"syncfailurecount"`
+	InputPortCount               int32                 `json:"inputportcount"`
+	OutputPortCount              int32                 `json:"outputportcount"`
 }
