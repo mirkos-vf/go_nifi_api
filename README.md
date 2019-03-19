@@ -1,3 +1,4 @@
+# package under development
 # nifi-api-client-go
 The Rest Api provides programmatic access to command and control a NiFi instance in real time. Start and stop processors, 
 monitor queues, query provenance data, and more. Each endpoint below includes a description, 

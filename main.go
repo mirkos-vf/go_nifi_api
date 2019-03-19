@@ -1,31 +1,34 @@
-package nifi_api
+package go_nifi_api
 
 import (
 	"crypto/tls"
 	"net/http"
 )
 
-const (
-	api_url = "https://vm-pd-nifi-1.dh.rt.ru:8080/nifi-api"
-)
-
 type app struct {
-	Token string
-}
+	// Token    string
+	username string
 
-type client struct {
+	password string
+
+	host string
+
 	client *http.Client
 }
 
-func (c *client) makeClient() {
+func (a *app) makeClient() {
 	// Create New http Transport
 	transCfg := &http.Transport{
 		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // disable verify
 	}
 	// Create Http Client
-	c.client = &http.Client{Transport: transCfg}
+	a.client = &http.Client{
+		Transport: transCfg,
+	}
 }
 
-func NewNiFi() *app {
-	return &app{}
+func NewNiFi(host string) *app {
+	return &app{
+		host: host,
+	}
 }

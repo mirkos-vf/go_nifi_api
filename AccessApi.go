@@ -1,3 +1,4 @@
+//Get controller configuration, Manage the cluster, Create reporting tasks
 package go_nifi_api
 
 import (
@@ -8,6 +9,9 @@ import (
 	"strings"
 )
 
+// The token returned is formatted as a JSON Web Token (JWT). The token is base64 encoded and comprised of three parts.
+// The header, the body, and the signature. The expiration of the token is a contained within the body.
+// The token can be used in the Authorization header in the format 'Authorization: Bearer <token>'.
 func (a *app) AccessToken(username, password string) (token string, err error) {
 	a.makeClient()
 
@@ -32,4 +36,12 @@ func (a *app) AccessToken(username, password string) (token string, err error) {
 		return "", err
 	}
 	return string(data), nil
+}
+
+// The token returned is a base64 encoded string. It is valid for a single request up to five minutes from being issued.
+// It is used as a query parameter name 'access_token'.
+func (a *app) UiExtensionToken(username, password string) (token string, err error) {
+	// TODO: func UiExtensionToken
+
+	return "", nil
 }
