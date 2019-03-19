@@ -14,7 +14,7 @@ definitions of the expected input and output, potential response codes, and the 
     )
     
     func main() {
-    	nifi := go_nifi_api.NewNiFi("https://vm-pd-nifi-1.dh.rt.ru:8080")
+    	nifi := go_nifi_api.NewNiFi("https://localhost:8080")
     	
     	token, _ := nifi.AccessToken(os.Getenv("NIFI_USERNAME"), os.Getenv("NIFI_PASSWORD"))
     	
