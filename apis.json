@@ -1,0 +1,165 @@
+{
+  "AccessApi": {
+    "methods": [{
+      "name": "access",
+      "method": "GET",
+      "request": [{
+        "consumes": "*/*"
+      }],
+      "response": [{
+        "body": "AccessStatusEntity",
+        "produces": "application/json"
+      }]
+    },
+      {
+        "name": "AccessConfig",
+        "method": "GET",
+        "request": [{
+          "consumes": "application/json"
+        }],
+        "response": [{
+          "body": "AccessConfigurationEntity",
+          "produces": "text/plain"
+        }]
+      },
+      {
+        "name": "AccessDownloadToken",
+        "method": "POST",
+        "request": [{
+          "consumes": "application/x-www-form-urlencoded",
+          "produces": "text/plain"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }]
+      },
+      {
+        "name": "AccessKerberos",
+        "method": "POST",
+        "request": [{
+          "consumes": "text/plain"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }]
+      },
+      {
+        "name": "AccessKnoxCallback",
+        "method": "GET",
+        "request": [{
+          "consumes": "text/plain"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }]
+      },
+      {
+        "name": "AccessKnoxLogout",
+        "method": "GET",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "*/*"
+        }]
+      },
+      {
+        "name": "AccessKnoxRequest",
+        "method": "GET",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "*/*"
+        }]
+      },
+      {
+        "name": "AccessOidcCallback",
+        "method": "GET",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "*/*"
+        }]
+      },
+      {
+        "name": "AccessOidcExchange",
+        "method": "POST",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }]
+      },
+      {
+        "name": "AccessOidcLogout",
+        "method": "GET",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "*/*"
+        }]
+      },
+      {
+        "name": "AccessOidcRequest",
+        "method": "POST",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "*/*"
+        }]
+      },
+      {
+        "name": "AccessToken",
+        "method": "POST",
+        "request": [{
+          "consumes": "application/x-www-form-urlencoded"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }],
+        "formdata": ["username", "password"]
+      },
+      {
+        "name": "AccessUiExtensionToken",
+        "method": "POST",
+        "request": [{
+          "consumes": "application/x-www-form-urlencoded"
+        }],
+        "response": [{
+          "produces": "text/plain"
+        }]
+      }
+    ]
+  },
+  "ControllerApi": {
+    "methods": [{
+      "name": "ControllerBulletin",
+      "method": "POST",
+      "request": [{
+        "consumes": "application/json",
+        "body": "BulletinEntity"
+      }],
+      "response": [{
+        "produces": "application/json",
+        "body": "BulletinEntity"
+      }]
+    },
+      {
+        "name": "ControllerCluster",
+        "method": "POST",
+        "request": [{
+          "consumes": "*/*"
+        }],
+        "response": [{
+          "produces": "application/json",
+          "body": "ClusterEntity"
+        }]
+      }
+    ]
+  }
+}
