@@ -10,7 +10,7 @@ import (
 	"go_nifi_api/types"
 )
 
-func (a *app) Controllerservices(id, token string) *types.ControllerServiceEntity {
+func (a *app) ControllSrservices(id, token string) *types.ControllerServiceEntity {
 
 	controllerServiceEntity := types.ControllerServiceEntity{}
 
@@ -28,7 +28,7 @@ func (a *app) Controllerservices(id, token string) *types.ControllerServiceEntit
 	return &controllerServiceEntity
 }
 
-func (a *app) ControllerservicesPut(id, token string, entity *types.ControllerServiceEntity) *types.ControllerServiceEntity {
+func (a *app) ControllerServicesPut(id, token string, entity *types.ControllerServiceEntity) *types.ControllerServiceEntity {
 
 	controllerServiceEntity := types.ControllerServiceEntity{}
 
