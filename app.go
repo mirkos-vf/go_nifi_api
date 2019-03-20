@@ -10,24 +10,11 @@ import (
 )
 
 type app struct {
-	username string
-	password string
-	host     string
-	client   *http.Client
+	host   string
+	client *http.Client
 }
 
 const api = "nifi-api"
-
-func (a *app) makeClient() {
-	// Create New http Transport
-	transCfg := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // disable verify
-	}
-	// Create Http Client
-	a.client = &http.Client{
-		Transport: transCfg,
-	}
-}
 
 func (a *app) Do(url, token, method string, data url.Values) ([]byte, error) {
 	var req *http.Request = nil
@@ -53,8 +40,19 @@ func (a *app) Do(url, token, method string, data url.Values) ([]byte, error) {
 	return []byte(read), nil
 }
 
-func NewNiFi(host string) *app {
-	return &app{
-		host: fmt.Sprintf("%s/%s", host, api),
+func (a *app) initialization() {
+	// Create New http Transport
+	transCfg := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true}, // disable verify
 	}
+	// Create Http Client
+	a.client = &http.Client{
+		Transport: transCfg,
+	}
+}
+
+func NewNiFi(host string) *app {
+	app := app{host: fmt.Sprintf("%s/%s", host, api)}
+	app.initialization()
+	return &app
 }

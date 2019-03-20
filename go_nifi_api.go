@@ -1,3 +1,3 @@
 package go_nifi_api
 
-//go:go:generate generateApi.py
+//go:generate python ./generateApi.py -i apis.json -o flag_generated.go

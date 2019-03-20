@@ -7,8 +7,6 @@ import (
 	"go_nifi_api/types"
 )
 
-//"go_nifi_api/types"
-
 func (a *app) ProcessGroups(GroupId, token, mrthod string) *types.ProcessGroupEntity {
 
 	processGroupEntity := types.ProcessGroupEntity{}
