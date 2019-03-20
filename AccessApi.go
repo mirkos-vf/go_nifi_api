@@ -10,7 +10,7 @@ import (
 // The token returned is formatted as a JSON Web Token (JWT). The token is base64 encoded and comprised of three parts.
 // The header, the body, and the signature. The expiration of the token is a contained within the body.
 // The token can be used in the Authorization header in the format 'Authorization: Bearer <token>'.
-func (a *app) AccessToken(username, password string) (token string) {
+func (a *app) AccessToken(username, password string) (token string, err error) {
 	a.makeClient()
 
 	formData := url.Values{}
@@ -18,7 +18,7 @@ func (a *app) AccessToken(username, password string) (token string) {
 	formData.Set("password", password)
 
 	urls := fmt.Sprintf("%s/%s", a.host, "access/token")
-	bytes := a.Do(urls, "", http.MethodPost, formData)
+	bytes, err := a.Do(urls, "", http.MethodPost, formData)
 
-	return string(bytes)
+	return string(bytes), err
 }

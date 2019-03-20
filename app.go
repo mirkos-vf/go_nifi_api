@@ -29,29 +29,19 @@ func (a *app) makeClient() {
 	}
 }
 
-func (a *app) Do(url, token, method string, data url.Values) []byte {
+func (a *app) Do(url, token, method string, data url.Values) ([]byte, error) {
 	var req *http.Request = nil
+	var err error
 
-	switch method {
-	case http.MethodGet:
-		req, _ = http.NewRequest(http.MethodGet, url, nil)
+	req, err = http.NewRequest(method, url, strings.NewReader(data.Encode()))
+	if err != nil {
+		return nil, err
+	}
+
+	if token == "" {
+		req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
+	} else {
 		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
-	case http.MethodPost:
-		if token != "" {
-			req, _ = http.NewRequest(http.MethodPost, url, nil)
-			req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
-		} else {
-			req, _ = http.NewRequest(http.MethodPost, url, strings.NewReader(data.Encode()))
-			req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
-		}
-	case http.MethodPut:
-		req, _ = http.NewRequest(method, url, nil)
-		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
-	case http.MethodDelete:
-		req, _ = http.NewRequest(method, url, nil)
-		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", token))
-	default:
-		return nil
 	}
 
 	response, _ := a.client.Do(req)
@@ -60,7 +50,7 @@ func (a *app) Do(url, token, method string, data url.Values) []byte {
 
 	read, _ := ioutil.ReadAll(response.Body)
 
-	return []byte(read)
+	return []byte(read), nil
 }
 
 func NewNiFi(host string) *app {

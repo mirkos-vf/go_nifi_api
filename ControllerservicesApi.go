@@ -13,7 +13,7 @@ func (a *app) ControllerServices(id, token string, method string) *types.Control
 	controllerServiceEntity := types.ControllerServiceEntity{}
 
 	url := fmt.Sprintf("%s/%s/%s", a.host, "controller-services", id)
-	bytes := a.Do(url, token, http.MethodGet, nil)
+	bytes, _ := a.Do(url, token, http.MethodGet, nil)
 	_ = json.Unmarshal(bytes, &controllerServiceEntity)
 
 	return &controllerServiceEntity
