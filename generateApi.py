@@ -40,9 +40,6 @@ def _generate_code(input_json):
         if key != "AccessApi":
             output_go = open(key+'.go', mode='w', buffering=-1)
 
-            for i in values['methods']:
-                i["path"].replace('/', '')
-
             tmpfile = tempfile.NamedTemporaryFile(suffix='.go', delete=False)
             _write_files(tmpfile, values)
             tmpfile.close()
