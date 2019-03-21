@@ -4,8 +4,7 @@ package go_nifi_api
 import (
 	"encoding/json"
 	"fmt"
-
-	"./types"
+	"types/types"
 )
 
 // WARNING: This file is generated!

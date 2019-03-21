@@ -61,7 +61,7 @@ def _write_files(outfile, data):
      // this documentation
      package go_nifi_api
 
-     import "./types"
+     import "types/types"
      
      // WARNING: This file is generated!
 
