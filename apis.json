@@ -4,173 +4,125 @@
       {
         "path":"Access",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "body":"AccessStatusEntity",
-            "produces":"application/json"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "body":"AccessStatusEntity",
+          "produces":"application/json"
+        }
       },
       {
         "path":"Access/Config",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"application/json"
-          }
-        ],
-        "response":[
-          {
-            "body":"AccessConfigurationEntity",
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"application/json"
+        },
+        "response":{
+          "body":"AccessConfigurationEntity",
+          "produces":"text/plain"
+        }
       },
       {
         "path":"Access/Download/Token",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"application/x-www-form-urlencoded",
-            "produces":"text/plain"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"application/x-www-form-urlencoded",
+          "produces":"text/plain"
+        },
+        "response":{
+          "produces":"text/plain"
+        }
       },
       {
         "path":"Access/Kerberos",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"text/plain"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"text/plain"
+        },
+        "response":{
+          "produces":"text/plain"
+        }
       },
       {
         "path":"Access/Knox/Callback",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"text/plain"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"text/plain"
+        },
+        "response":{
+          "produces":"text/plain"
+        }
       },
       {
         "path":"Access/KnoxLogout",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"*/*"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"*/*"
+        }
       },
       {
         "path":"Access/Knox/Request",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"*/*"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"*/*"
+        }
       },
       {
         "path":"Access/Oidc/Callback",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"*/*"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"*/*"
+        }
       },
       {
         "path":"Access/Oidc/Exchange",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"text/plain"
+        }
       },
       {
         "path":"Access/Oidc/Logout",
         "method":"GET",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"*/*"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"*/*"
+        }
       },
       {
         "path":"Access/Oidc/Request",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"*/*"
-          }
-        ],
-        "response":[
-          {
-            "produces":"*/*"
-          }
-        ]
+        "request":{
+          "consumes":"*/*"
+        },
+        "response":{
+          "produces":"*/*"
+        }
       },
       {
         "path":"Access/Token",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"application/x-www-form-urlencoded"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ],
+        "request":{
+          "consumes":"application/x-www-form-urlencoded"
+        },
+        "response":{
+          "produces":"text/plain"
+        },
         "formdata":[
           "username",
           "password"
@@ -179,61 +131,59 @@
       {
         "path":"Access/UiExtension/Token",
         "method":"POST",
-        "request":[
-          {
-            "consumes":"application/x-www-form-urlencoded"
-          }
-        ],
-        "response":[
-          {
-            "produces":"text/plain"
-          }
-        ]
+        "request":{
+          "consumes":"application/x-www-form-urlencoded"
+        },
+        "response":{
+          "produces":"text/plain"
+        }
       }
     ]
   },
   "ControllerApi":{
-    "methods": [
+    "methods":[
       {
         "path":"Controller/Bulletin",
         "method":"POST",
         "request":[
-        {
-          "consumes":"application/json",
-          "body":"BulletinEntity"
-        }],
+          {
+            "consumes":"application/json",
+            "body":"BulletinEntity"
+          }
+        ],
         "response":[
-        {
-          "produces":"application/json",
-          "body":"BulletinEntity"
-        }]
+          {
+            "produces":"application/json",
+            "body":"BulletinEntity"
+          }
+        ]
       },
       {
         "path":"Controller/Cluster",
         "method":"POST",
         "request":[
-        {
-          "consumes":"*/*"
-        }],
-        "response":[
-        {
-          "produces":"application/json",
-          "body":"ClusterEntity"
-        }]
-      },
-      {
-        "path":"Controller/Cluster/Nodes",
-        "method":"POST",
-        "request":[
           {
-            "consumes":"*/*",
-            "path": "id"
-          }],
+            "consumes":"*/*"
+          }
+        ],
         "response":[
           {
             "produces":"application/json",
-            "body":"NodeEntity"
-          }]
+            "body":"ClusterEntity"
+          }
+        ]
+      },
+      {
+        "path" :"Controller/Cluster/Nodes",
+        "method":"POST",
+        "request":{
+          "consumes":"*/*",
+          "path":"id"
+        },
+        "response":{
+          "produces":"application/json",
+          "body":"NodeEntity"
+        }
       }
     ]
   }
