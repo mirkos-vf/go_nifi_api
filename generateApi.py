@@ -58,7 +58,7 @@ def _write_files(outfile, data):
      // this documentation
      package go_nifi_api
 
-     import "types/types"
+     import "./types"
      
      // WARNING: This file is generated!
 
@@ -69,9 +69,14 @@ def _write_files(outfile, data):
         path = i["path"].lower()
 
         if "body" in i["response"][0]:
-            _fwrite(outfile, """\
+            type = i["response"][0]["body"]
+            param = ''
+            if "path" in i["request"][0]:
+                param = "{}, ".format(i["request"][0]["param"])
+
+            _fwrite(outfile, f"""\
             // {name} this godoc
-            func (a *app) {name}(token, method string) *types.{type} {{
+            func (a *app) {name}({param}token, method string) *types.{type} {{
                 variables := types.{type}{{}}
                 
                 url := fmt.Sprintf("%s/%s/%s", a.host, "{path}", "")
@@ -79,8 +84,8 @@ def _write_files(outfile, data):
                 _ = json.Unmarshal(bytes, &variables)
     
                 return &variables
-            \n\n}}
-            """.format(name=name, type=i["response"][0]["body"], path=path))
+            }}\n\n
+            """)
 
 
 def _fwrite(outfile, content):

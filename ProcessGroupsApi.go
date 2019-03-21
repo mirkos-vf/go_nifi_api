@@ -4,15 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"go_nifi_api/types"
+	"./types"
 )
 
-func (a *app) ProcessGroups(GroupId, token, mrthod string) *types.ProcessGroupEntity {
+func (a *app) ProcessGroups(GroupId, token, method string) *types.ProcessGroupEntity {
 
 	processGroupEntity := types.ProcessGroupEntity{}
 
 	url := fmt.Sprintf("%s/%s/%s", a.host, "process-groups", GroupId)
-	bytes, _ := a.Do(url, token, mrthod, nil)
+	bytes, _ := a.Do(url, token, method, nil)
 	_ = json.Unmarshal(bytes, &processGroupEntity)
 
 	return &processGroupEntity

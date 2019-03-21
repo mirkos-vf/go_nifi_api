@@ -193,37 +193,47 @@
     ]
   },
   "ControllerApi":{
-    "methods":[
+    "methods": [
       {
         "path":"Controller/Bulletin",
         "method":"POST",
         "request":[
-          {
-            "consumes":"application/json",
-            "body":"BulletinEntity"
-          }
-        ],
+        {
+          "consumes":"application/json",
+          "body":"BulletinEntity"
+        }],
         "response":[
-          {
-            "produces":"application/json",
-            "body":"BulletinEntity"
-          }
-        ]
+        {
+          "produces":"application/json",
+          "body":"BulletinEntity"
+        }]
       },
       {
         "path":"Controller/Cluster",
         "method":"POST",
         "request":[
+        {
+          "consumes":"*/*"
+        }],
+        "response":[
+        {
+          "produces":"application/json",
+          "body":"ClusterEntity"
+        }]
+      },
+      {
+        "path":"Controller/Cluster/Nodes",
+        "method":"POST",
+        "request":[
           {
-            "consumes":"*/*"
-          }
-        ],
+            "consumes":"*/*",
+            "path": "id"
+          }],
         "response":[
           {
             "produces":"application/json",
-            "body":"ClusterEntity"
-          }
-        ]
+            "body":"NodeEntity"
+          }]
       }
     ]
   }
