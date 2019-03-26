@@ -14,6 +14,14 @@ class _FancyFormatter(argparse.ArgumentDefaultsHelpFormatter,
     pass
 
 
+_v_format = {
+    "name": '',
+    "path": '',
+    "type": '',
+    "param": ''
+}
+
+
 def main(sysargs=sys.argv[:]):
     parser = argparse.ArgumentParser(
         description='Generate code!',
@@ -65,16 +73,16 @@ def _write_files(outfile, data):
      """)
 
     for i in data['methods']:
-        name = i["path"].replace('/', '')
-        path = i["path"].lower()
+        _format().setdefault("name", '{}{}'.format(_get_method(i["method"]), i["path"].replace('/', '')))
+        _format().setdefault("path", i["path"].lower())
 
         if "body" in i["response"][0]:
-            type = i["response"][0]["body"]
-            param = ''
+            _format().setdefault("type", i["response"][0]["body"])
+
             if "path" in i["request"][0]:
                 param = "{}, ".format(i["request"][0]["param"])
 
-            _fwrite(outfile, f"""\
+            _fwrite(outfile, """\
             // {name} this godoc
             func (a *app) {name}({param}token, method string) *types.{type} {{
                 variables := types.{type}{{}}
@@ -85,14 +93,17 @@ def _write_files(outfile, data):
     
                 return &variables
             }}\n\n
-            """)
+            """.format(**_format()))
 
 
 def _fwrite(outfile, content):
     print(textwrap.dedent(content), end='', file=outfile)
 
 
-def _type_method(type):
+def _format():
+    return _v_format
+
+def _get_method(type):
     return {
         'POST': 'create',
         'GET ': 'get',

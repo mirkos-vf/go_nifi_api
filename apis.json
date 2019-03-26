@@ -1,5 +1,5 @@
 {
-  "AccessApi":{
+  "Access-Api":{
     "methods":[
       {
         "path":"Access",
@@ -140,7 +140,7 @@
       }
     ]
   },
-  "ControllerApi":{
+  "Controller-Api":{
     "methods":[
       {
         "path":"Controller/Bulletin",
