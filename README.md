@@ -37,4 +37,4 @@ All URIs are relative to *http://localhost/nifi-api*
 
 ## TODO
 
-to-do list
+* rename all files to directory [**types**](docs/)
