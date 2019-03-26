@@ -28,6 +28,13 @@ definitions of the expected input and output, potential response codes, and the 
     }
 ```
 
+## Documentation for API
+All URIs are relative to *http://localhost/nifi-api*
+
+[**createAccessToken**](docs/AccessApi.md#createAccessToken)
+
+
+
 ## TODO
 
 to-do list

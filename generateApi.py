@@ -38,7 +38,7 @@ def _generate_code(input_json):
 
     for key, values in data.items():
         if key != "AccessApi":
-            output_go = open(key+'.go', mode='w', buffering=-1)
+            output_go = open(key + '.go', mode='w', buffering=-1)
 
             tmpfile = tempfile.NamedTemporaryFile(suffix='.go', delete=False)
             _write_files(tmpfile, values)
@@ -90,6 +90,15 @@ def _write_files(outfile, data):
 
 def _fwrite(outfile, content):
     print(textwrap.dedent(content), end='', file=outfile)
+
+
+def _type_method(type):
+    return {
+        'POST': 'create',
+        'GET ': 'get',
+        'DELETE': 'delete',
+        'PUT': 'put',
+    }[type]
 
 
 if __name__ == '__main__':
