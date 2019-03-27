@@ -62,20 +62,8 @@ No authorization required
  The token returned is formatted as a JSON Web Token (JWT). The token is base64 encoded and comprised of three parts. The header, the body, and the signature. The expiration of the token is a contained within the body. The token can be used in the Authorization header in the format &#39;Authorization: Bearer &lt;token&gt;&#39;.
  
  ### Example
- ```java
- // Import classes:
- //import io.swagger.client.ApiException;
- //import io.swagger.client.api.AccessApi;
- 
- 
- AccessApi apiInstance = new AccessApi();
- try {
-     String result = apiInstance.createAccessTokenFromTicket();
-     System.out.println(result);
- } catch (ApiException e) {
-     System.err.println("Exception when calling AccessApi#createAccessTokenFromTicket");
-     e.printStackTrace();
- }
+ ```go
+
  ```
  
  ### Parameters
@@ -102,20 +90,8 @@ No authorization required
  The token returned is a base64 encoded string. It is valid for a single request up to five minutes from being issued. It is used as a query parameter name &#39;access_token&#39;.
  
  ### Example
- ```java
- // Import classes:
- //import io.swagger.client.ApiException;
- //import io.swagger.client.api.AccessApi;
+ ```go
  
- 
- AccessApi apiInstance = new AccessApi();
- try {
-     String result = apiInstance.createDownloadToken();
-     System.out.println(result);
- } catch (ApiException e) {
-     System.err.println("Exception when calling AccessApi#createDownloadToken");
-     e.printStackTrace();
- }
  ```
  
  ### Parameters
